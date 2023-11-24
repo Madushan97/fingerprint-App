@@ -29,21 +29,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-  mail:
-    default-encoding: UTF-8
-    host: smtp.gmail.com
-    username: cbadev2021@gmail.com
-    password: rqtxmosiovfndjpg
-    port: 587
-    protocol: smtp
-    test-connection: false
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
   application:
     name: micro-aoer
     timeZone: Asia/Colombo
@@ -58,7 +43,3 @@ logging:
       cba:
         mpos:
           aoer: DEBUG
-
-sender:
-  mail:
-    address: cbadev2021@gmail.com
