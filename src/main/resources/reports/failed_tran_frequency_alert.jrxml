@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Periodic_Service_Details" pageWidth="595" pageHeight="842" orientation="Portrait" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" isFloatColumnFooter="true" uuid="812ba3ae-e3d5-4b9b-aaa5-b245f32e739c">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+
+    <parameter name = "date" class = "java.time.LocalDateTime"/>
+
+    <field name="tid" class="java.lang.String"/>
+    <field name="mid" class="java.lang.String"/>
+    <field name="merchantName" class="java.lang.String"/>
+    <field name="failedTranCount" class="java.lang.Long"/>
+
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+
+    <title>
+        <band height="60" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="250" height="60" uuid="c716bd27-ea3b-4be9-9d6b-6ce25dfe8e8a"/>
+                <textElement textAlignment="Left" verticalAlignment="Top" markup="styled">
+                    <font size="18" fontName="SansSerif" isBold="true" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <text><![CDATA[Declined Transaction Report]]></text>
+            </staticText>
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+                <reportElement x="265" y="0" width="250" height="10" uuid="c716bd27-ea3b-4be9-9d6b-6ce25dfe8e8a"/>
+                <textElement textAlignment="Right" verticalAlignment="Top" markup="styled">
+                    <font size="14" fontName="SansSerif" isBold="false" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="25" splitType="Stretch">
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="70" height="25" forecolor="#000000" uuid="5e2fa33e-8982-436b-8c8d-8b106e5e0afe"/>
+                <box leftPadding="2" rightPadding="2">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" fontName="SansSerif" isBold="true" isItalic="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="Double"/>
+                </textElement>
+                <text><![CDATA[TID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="70" y="0" width="110" height="25" forecolor="#000000" uuid="26efe20a-416f-47d3-88f2-c67410a1bc6c"/>
+                <box leftPadding="2" rightPadding="2">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" fontName="SansSerif" isBold="true" isItalic="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="Double"/>
+                </textElement>
+                <text><![CDATA[MID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="180" y="0" width="207" height="25" forecolor="#000000" uuid="b1028144-c81f-45c2-8101-25a9bc4b6194"/>
+                <box leftPadding="2" rightPadding="2">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" fontName="SansSerif" isBold="true" isItalic="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="Double"/>
+                </textElement>
+                <text><![CDATA[Merchant Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="387" y="0" width="128" height="25" forecolor="#000000" uuid="ffc3eeaa-5913-407b-b04a-375a14e38d0b"/>
+                <box leftPadding="2" rightPadding="2">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" fontName="SansSerif" isBold="true" isItalic="false" isPdfEmbedded="false"/>
+                    <paragraph lineSpacing="Double"/>
+                </textElement>
+                <text><![CDATA[Declined Count]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="25" splitType="Stretch">
+            <textField>
+                <reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="70" height="25" uuid="814ec98e-fabb-4bf7-8513-5ca7ee1fbef0"/>
+                <box leftPadding="5" rightPadding="5">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" fontName="SansSerif" isBold="false" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{tid}]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+                <reportElement positionType="Float" stretchType="RelativeToTallestObject" x="70" y="0" width="110" height="25" isPrintWhenDetailOverflows="true" uuid="829aaf34-0904-4116-8202-444ba57fb7fb"/>
+                <box leftPadding="5" rightPadding="5">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" fontName="SansSerif" isBold="false" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mid}]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+                <reportElement positionType="Float" stretchType="RelativeToTallestObject" x="180" y="0" width="207" height="25" isPrintWhenDetailOverflows="true" uuid="eb82bfa3-e199-4a02-b548-618115b85675"/>
+                <box leftPadding="5" rightPadding="5">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="10" fontName="SansSerif" isBold="false" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{merchantName}]]></textFieldExpression>
+            </textField>
+            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+                <reportElement positionType="Float" stretchType="RelativeToTallestObject" x="387" y="0" width="128" height="25" isPrintWhenDetailOverflows="true" uuid="bd460c83-6752-4fca-a6fd-132265d1a78e"/>
+                <box leftPadding="5" rightPadding="5">
+                    <pen lineWidth="0.5"/>
+                    <topPen lineWidth="0.5"/>
+                    <leftPen lineWidth="0.5"/>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" fontName="SansSerif" isBold="false" isItalic="false" isPdfEmbedded="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{failedTranCount}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
