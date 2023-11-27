@@ -22,27 +22,30 @@ public class DataTransferController {
     private final DataTransferService dataTransferService;
 
 //    The Data will be pushed after the application starts
-    @PostConstruct
-    public void onApplicationStart() {
-
-        dataTransferService.transferData();
-        System.out.println("Data transfer on application start");
-    }
+//    @PostConstruct
+//    public void onApplicationStart() {
+//
+//        dataTransferService.transferData();
+//        System.out.println("Data transfer on application start");
+//    }
 
     @PostMapping("/transfer")
     public ResponseEntity<String> transferData() {
+
         dataTransferService.transferData();
         return ResponseEntity.ok("Data transfer successful");
     }
 
     @GetMapping("/target/getAll")
     public ResponseEntity<List<TargetEntity>> getAllTarget() {
+
         List<TargetEntity> targetData = dataTransferService.getAllTargetData();
         return new ResponseEntity<>(targetData, HttpStatus.OK);
     }
 
     @GetMapping("/source/getAll")
     public ResponseEntity<List<SourceEntity>> getAllSource() {
+
         List<SourceEntity> targetData = dataTransferService.getAllSourceData();
         return new ResponseEntity<>(targetData, HttpStatus.OK);
     }

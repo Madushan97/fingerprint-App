@@ -58,6 +58,7 @@ public class DataTransferService {
     private TargetEntity mapSourceToTarget(SourceEntity sourceEntity) {
         TargetEntity targetEntity = new TargetEntity();
         LocalDateTime localDateTime = sourceEntity.getLogDateTime().toLocalDateTime();
+        System.out.println("SourceEntity before save: " + sourceEntity);
         if (sourceEntity.getIsProcessed() == 0) {
             targetEntity.setDate(localDateTime.toLocalDate());          // date
             targetEntity.setTime(localDateTime.toLocalTime());          // time
@@ -67,12 +68,15 @@ public class DataTransferService {
             targetEntity.setCheck(String.valueOf(0));                   // check
             targetEntity.setStatus(String.valueOf(sourceEntity.getIsProcessed()));  // is processed
 
-            sourceEntity.setIsProcessed((byte) 1);
+            sourceEntity.setIsProcessed((byte) 1);      // set isProcessed to 1 before saving
         }
-        SourceEntity sc = sourceRepository.save(sourceEntity);
+        sourceRepository.save(sourceEntity);
+        System.out.println("SourceEntity after save: " + sourceEntity);
         return targetEntity;
     }
 
+
+    /*
     private String convertDateToDateString(LocalDate date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
@@ -82,6 +86,6 @@ public class DataTransferService {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         return timeFormat.format(date);
     }
-
+    */
 
 }
