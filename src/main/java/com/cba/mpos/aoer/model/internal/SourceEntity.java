@@ -5,11 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @AllArgsConstructor
@@ -20,17 +18,18 @@ import java.util.Date;
 public class SourceEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LogID")
-    private Long LogID;
+    private long LogID;
 
     @Column(name = "EmpID")
     private String EmpID;
 
     @Column(name = "LogDateTime")
-    private Date LogDateTime;
+    private Timestamp LogDateTime;
 
     @Column(name = "IsProcessed")
-    private Boolean IsProcessed;
+    private Byte IsProcessed;
 
     @Column(name = "IpAdrs")
     private String IpAdrs;

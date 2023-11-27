@@ -6,14 +6,20 @@ spring:
     internal:
       url: jdbc:mysql://localhost:3306/adms_db?allowPublicKeyRetrieval=true&useSSL=false
       username: root
-      password: password
+      password: madushan
       driverClassName: com.mysql.cj.jdbc.Driver
 
     external:
-      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
-      username: root
-      password: password
+      url: jdbc:mysql://20.212.81.211/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+      username: ibslhr_fp
+      password: yHGPinUCBJAP162Z
       driverClassName: com.mysql.cj.jdbc.Driver
+
+#    external:
+#      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+#      username: root
+#      password: madushan
+#      driverClassName: com.mysql.cj.jdbc.Driver
 
   jpa:
     show_sql: false
@@ -29,21 +35,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-  mail:
-    default-encoding: UTF-8
-    host: smtp.gmail.com
-    username: cbadev2021@gmail.com
-    password: rqtxmosiovfndjpg
-    port: 587
-    protocol: smtp
-    test-connection: false
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
   application:
     name: micro-aoer
     timeZone: Asia/Colombo
@@ -58,7 +49,3 @@ logging:
       cba:
         mpos:
           aoer: DEBUG
-
-sender:
-  mail:
-    address: cbadev2021@gmail.com
