@@ -15,6 +15,12 @@ spring:
       password: yHGPinUCBJAP162Z
       driverClassName: com.mysql.cj.jdbc.Driver
 
+#    external:
+#      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+#      username: root
+#      password: madushan
+#      driverClassName: com.mysql.cj.jdbc.Driver
+
   jpa:
     show_sql: false
     hibernate:

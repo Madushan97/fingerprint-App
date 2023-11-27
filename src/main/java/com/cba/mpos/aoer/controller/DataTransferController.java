@@ -2,7 +2,7 @@ package com.cba.mpos.aoer.controller;
 
 import com.cba.mpos.aoer.model.external.TargetEntity;
 import com.cba.mpos.aoer.model.internal.SourceEntity;
-import com.cba.mpos.aoer.service.common.DataTransferService;
+import com.cba.mpos.aoer.service.DataTransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,14 @@ import java.util.List;
 public class DataTransferController {
 
     private final DataTransferService dataTransferService;
+
+//    The Data will be pushed after the application starts
+    @PostConstruct
+    public void onApplicationStart() {
+
+        dataTransferService.transferData();
+        System.out.println("Data transfer on application start");
+    }
 
     @PostMapping("/transfer")
     public ResponseEntity<String> transferData() {

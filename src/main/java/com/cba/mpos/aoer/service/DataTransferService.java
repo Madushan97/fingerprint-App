@@ -1,4 +1,4 @@
-package com.cba.mpos.aoer.service.common;
+package com.cba.mpos.aoer.service;
 
 import com.cba.mpos.aoer.model.external.TargetEntity;
 import com.cba.mpos.aoer.model.internal.SourceEntity;
@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -55,27 +57,28 @@ public class DataTransferService {
 
     private TargetEntity mapSourceToTarget(SourceEntity sourceEntity) {
         TargetEntity targetEntity = new TargetEntity();
+        LocalDateTime localDateTime = sourceEntity.getLogDateTime().toLocalDateTime();
+        if (sourceEntity.getIsProcessed() == 0) {
+            targetEntity.setDate(localDateTime.toLocalDate());          // date
+            targetEntity.setTime(localDateTime.toLocalTime());          // time
+            targetEntity.setEmployee_id(sourceEntity.getEmpID());       // employee_id
+            targetEntity.setAction(String.valueOf(1));                  // action
+            targetEntity.setAction_hbx(String.valueOf(0));              // action_hbx
+            targetEntity.setCheck(String.valueOf(0));                   // check
+            targetEntity.setStatus(String.valueOf(sourceEntity.getIsProcessed()));  // is processed
 
-//        targetEntity.setDateIndex(sourceEntity.getLogDateTime().)));
-//        targetEntity.setTimeIndex(sourceEntity.get));
-        targetEntity.setEmployeeIdIndex(sourceEntity.getEmpID());
-        targetEntity.setId(sourceEntity.getLogID());
-        targetEntity.setAction("1");
-        targetEntity.setActionHbx("0");
-        targetEntity.setStatus(String.valueOf(sourceEntity.getIsProcessed()));
-        targetEntity.setCheck(sourceEntity.getCheckType());
-//        private Timestamp createdTime;
-//        private Timestamp updateTime;
-
+            sourceEntity.setIsProcessed((byte) 1);
+        }
+        SourceEntity sc = sourceRepository.save(sourceEntity);
         return targetEntity;
     }
 
-    private String convertDateToDateString(Date date) {
+    private String convertDateToDateString(LocalDate date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
     }
 
-    private String convertDateToTimeString(Date date) {
+    private String convertDateToTimeString(LocalDateTime date) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         return timeFormat.format(date);
     }
