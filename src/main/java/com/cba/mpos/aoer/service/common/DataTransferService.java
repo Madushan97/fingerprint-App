@@ -21,11 +21,19 @@ public class DataTransferService {
     private final TargetRepository targetRepository;
 
     public List<TargetEntity> getAllTargetData() {
-        return targetRepository.findAll();
+        try {
+            return targetRepository.findAll();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public List<SourceEntity> getAllSourceData() {
-        return sourceRepository.findAll();
+        try {
+            return sourceRepository.findAll();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public void transferData() {
@@ -48,8 +56,8 @@ public class DataTransferService {
     private TargetEntity mapSourceToTarget(SourceEntity sourceEntity) {
         TargetEntity targetEntity = new TargetEntity();
 
-        targetEntity.setDateIndex(convertDateToDateString(sourceEntity.getLogDateTime()));
-        targetEntity.setTimeIndex(convertDateToTimeString(sourceEntity.getLogDateTime()));
+//        targetEntity.setDateIndex(sourceEntity.getLogDateTime().)));
+//        targetEntity.setTimeIndex(sourceEntity.get));
         targetEntity.setEmployeeIdIndex(sourceEntity.getEmpID());
         targetEntity.setId(sourceEntity.getLogID());
         targetEntity.setAction("1");

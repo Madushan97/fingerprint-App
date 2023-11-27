@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -15,17 +17,17 @@ import java.sql.Timestamp;
 public class TargetEntity {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPrimary")
     private Long id;
 
-    @Column(name = "DateIndex")
-    private String dateIndex;
+    @Column(name = "Date")
+    private Date dateIndex;
 
-    @Column(name = "timeIndex")
-    private String timeIndex;
+    @Column(name = "time")
+    private Time timeIndex;
 
-    @Column(name = "employee_idIndex")
+    @Column(name = "employee_id")
     private String employeeIdIndex;
 
     @Column(name = "action")

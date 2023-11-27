@@ -9,7 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @AllArgsConstructor
@@ -30,7 +30,7 @@ public class SourceEntity {
     private Date LogDateTime;
 
     @Column(name = "IsProcessed")
-    private Boolean IsProcessed;
+    private Byte IsProcessed;
 
     @Column(name = "IpAdrs")
     private String IpAdrs;

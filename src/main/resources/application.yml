@@ -6,13 +6,13 @@ spring:
     internal:
       url: jdbc:mysql://localhost:3306/adms_db?allowPublicKeyRetrieval=true&useSSL=false
       username: root
-      password: password
+      password: madushan
       driverClassName: com.mysql.cj.jdbc.Driver
 
     external:
-      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
-      username: root
-      password: password
+      url: jdbc:mysql://20.212.81.211/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+      username: ibslhr_fp
+      password: yHGPinUCBJAP162Z
       driverClassName: com.mysql.cj.jdbc.Driver
 
   jpa:

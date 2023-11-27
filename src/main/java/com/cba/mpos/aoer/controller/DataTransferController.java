@@ -33,7 +33,7 @@ public class DataTransferController {
     }
 
     @GetMapping("/source/getAll")
-    public ResponseEntity<List<TargetEntity>> getAllSource() {
+    public ResponseEntity<List<SourceEntity>> getAllSource() {
         List<SourceEntity> targetData = dataTransferService.getAllSourceData();
         return new ResponseEntity<>(targetData, HttpStatus.OK);
     }
