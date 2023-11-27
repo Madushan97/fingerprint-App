@@ -1,8 +1,10 @@
 package com.cba.mpos.aoer.service;
 
 import com.cba.mpos.aoer.model.external.TargetEntity;
+import com.cba.mpos.aoer.model.internal.CheckInOut;
 import com.cba.mpos.aoer.model.internal.SourceEntity;
 import com.cba.mpos.aoer.repository.external.TargetRepository;
+import com.cba.mpos.aoer.repository.internal.CheckInOutRepository;
 import com.cba.mpos.aoer.repository.internal.SourceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class DataTransferService {
 
     private final SourceRepository sourceRepository;
     private final TargetRepository targetRepository;
+    private final CheckInOutRepository checkInOutRepository;
 
     public List<TargetEntity> getAllTargetData() {
         try {
@@ -58,6 +61,7 @@ public class DataTransferService {
     private TargetEntity mapSourceToTarget(SourceEntity sourceEntity) {
         TargetEntity targetEntity = new TargetEntity();
         LocalDateTime localDateTime = sourceEntity.getLogDateTime().toLocalDateTime();
+        System.out.println("SourceEntity before save: " + sourceEntity);
         if (sourceEntity.getIsProcessed() == 0) {
             targetEntity.setDate(localDateTime.toLocalDate());          // date
             targetEntity.setTime(localDateTime.toLocalTime());          // time
@@ -67,21 +71,16 @@ public class DataTransferService {
             targetEntity.setCheck(String.valueOf(0));                   // check
             targetEntity.setStatus(String.valueOf(sourceEntity.getIsProcessed()));  // is processed
 
-            sourceEntity.setIsProcessed((byte) 1);
+//          after push the data, IsProcessed should be
+            CheckInOut checkInOut = checkInOutRepository.findById((int) sourceEntity.getLogID()).get();
+                checkInOut.setIsProcessed((byte) 1);
+                checkInOutRepository.save(checkInOut);
         }
-        SourceEntity sc = sourceRepository.save(sourceEntity);
+        sourceRepository.save(sourceEntity);
+        System.out.println("SourceEntity after save: " + sourceEntity);
         return targetEntity;
     }
 
-    private String convertDateToDateString(LocalDate date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
-    }
-
-    private String convertDateToTimeString(LocalDateTime date) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        return timeFormat.format(date);
-    }
 
 
 }
