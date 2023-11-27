@@ -1,8 +1,10 @@
 package com.cba.mpos.aoer.service;
 
 import com.cba.mpos.aoer.model.external.TargetEntity;
+import com.cba.mpos.aoer.model.internal.CheckInOut;
 import com.cba.mpos.aoer.model.internal.SourceEntity;
 import com.cba.mpos.aoer.repository.external.TargetRepository;
+import com.cba.mpos.aoer.repository.internal.CheckInOutRepository;
 import com.cba.mpos.aoer.repository.internal.SourceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class DataTransferService {
 
     private final SourceRepository sourceRepository;
     private final TargetRepository targetRepository;
+    private final CheckInOutRepository checkInOutRepository;
 
     public List<TargetEntity> getAllTargetData() {
         try {
@@ -68,7 +71,10 @@ public class DataTransferService {
             targetEntity.setCheck(String.valueOf(0));                   // check
             targetEntity.setStatus(String.valueOf(sourceEntity.getIsProcessed()));  // is processed
 
-            sourceEntity.setIsProcessed((byte) 1);      // set isProcessed to 1 before saving
+//          after push the data, IsProcessed should be
+            CheckInOut checkInOut = checkInOutRepository.findById((int) sourceEntity.getLogID()).get();
+                checkInOut.setIsProcessed((byte) 1);
+                checkInOutRepository.save(checkInOut);
         }
         sourceRepository.save(sourceEntity);
         System.out.println("SourceEntity after save: " + sourceEntity);
@@ -76,16 +82,5 @@ public class DataTransferService {
     }
 
 
-    /*
-    private String convertDateToDateString(LocalDate date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
-    }
-
-    private String convertDateToTimeString(LocalDateTime date) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        return timeFormat.format(date);
-    }
-    */
 
 }
