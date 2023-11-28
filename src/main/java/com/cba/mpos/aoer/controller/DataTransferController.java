@@ -6,6 +6,7 @@ import com.cba.mpos.aoer.service.DataTransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,20 +16,22 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/data")
+//@RequestMapping("/api/data")
 @RequiredArgsConstructor
 public class DataTransferController {
 
     private final DataTransferService dataTransferService;
 
 //    The Data will be pushed after the application starts
-//    @PostConstruct
-//    public void onApplicationStart() {
-//
-//        dataTransferService.transferData();
-//        System.out.println("Data transfer on application start");
-//    }
+    @PostConstruct
+    @Scheduled(fixedDelay = 10000)
+    public void onApplicationStart() {
 
+        dataTransferService.transferData();
+        System.out.println("Data transferring every 10 seconds...");
+    }
+
+    /*
     @PostMapping("/transfer")
     public ResponseEntity<String> transferData() {
 
@@ -49,4 +52,5 @@ public class DataTransferController {
         List<SourceEntity> targetData = dataTransferService.getAllSourceData();
         return new ResponseEntity<>(targetData, HttpStatus.OK);
     }
+     */
 }

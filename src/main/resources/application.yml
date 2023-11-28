@@ -6,31 +6,33 @@ spring:
     internal:
       url: jdbc:mysql://localhost:3306/adms_db?allowPublicKeyRetrieval=true&useSSL=false
       username: root
-      password: madushan
-      driverClassName: com.mysql.cj.jdbc.Driver
-
-    external:
-      url: jdbc:mysql://20.212.81.211/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
-      username: ibslhr_fp
-      password: yHGPinUCBJAP162Z
+      password: password
       driverClassName: com.mysql.cj.jdbc.Driver
 
 #    external:
-#      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
-#      username: root
-#      password: madushan
+#      url: jdbc:mysql://20.212.81.211/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+#      username: ibslhr_fp
+#      password: yHGPinUCBJAP162Z
 #      driverClassName: com.mysql.cj.jdbc.Driver
+
+    external:
+      url: jdbc:mysql://localhost:3306/ibslhr?allowPublicKeyRetrieval=true&useSSL=false
+      username: root
+      password: password
+      driverClassName: com.mysql.cj.jdbc.Driver
 
   jpa:
     show_sql: false
     hibernate:
       ddl-auto: update
-      #naming:
-        #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
     properties.hibernate.jdbc.lob.non_contextual_creation: true
     properties.hibernate.jdbc.time_zone: Asia/Colombo
     generate-ddl: true
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

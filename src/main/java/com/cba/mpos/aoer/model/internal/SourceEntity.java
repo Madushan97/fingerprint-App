@@ -29,7 +29,7 @@ public class SourceEntity {
     private Timestamp LogDateTime;
 
     @Column(name = "IsProcessed")
-    private Byte IsProcessed;
+    private Boolean IsProcessed;
 
     @Column(name = "IpAdrs")
     private String IpAdrs;
